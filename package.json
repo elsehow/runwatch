@@ -8,10 +8,29 @@
   "scripts": {
     "start": "./cmd.js"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "gaze": "^1.0.0",
     "minimist": "^1.2.0"
-  }
+  },
+  "name": "runwatch",
+  "description": "WIP testing module",
+  "version": "0.0.3",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elsehow/runwatch.git"
+  },
+  "keywords": [
+    "glob",
+    "watch",
+    "run",
+    "monitor"
+  ],
+  "bugs": {
+    "url": "https://github.com/elsehow/runwatch/issues"
+  },
+  "homepage": "https://github.com/elsehow/runwatch#readme"
 }

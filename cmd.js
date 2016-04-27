@@ -1,15 +1,14 @@
 #! /usr/bin/env node
 function quit (err) {
   console.log(err)
-  proess.exit(1)
+  process.exit(1)
 }
-var usage = () => quit('usage TK')
+var usage = () => quit(`USAGE: runwatch [glob] -c "[command]"`)
 var argv = require('minimist')(process.argv.slice(2))
 var gaze = require('gaze')
 var spawn = require('child_process').spawn
 var glob = argv._[0]
 var cmd = argv.c
-console.log(argv)
 if (!glob) usage()
 if (!cmd) usage()
 function spawnCommand () {
@@ -20,9 +19,11 @@ gaze(glob, (err, watcher) => {
   if (err) quit(err)
   var proc = spawnCommand()
   proc.stdout.pipe(process.stdout)
+  proc.stderr.pipe(process.stderr)
   watcher.on('changed', () => {
     proc.kill()
     proc = spawnCommand()
     proc.stdout.pipe(process.stdout)
+    proc.stderr.pipe(process.stderr)
   })
 })
