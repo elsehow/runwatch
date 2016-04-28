@@ -15,7 +15,7 @@
   },
   "name": "runwatch",
   "description": "WIP testing module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "directories": {
     "test": "test"
   },
