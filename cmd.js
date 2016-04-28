@@ -13,17 +13,13 @@ if (!glob) usage()
 if (!cmd) usage()
 function spawnCommand () {
   var cmds = cmd.split(' ')
-  return spawn(cmds[0], cmds.slice(1))
+  return spawn(cmds[0], cmds.slice(1), { stdio: 'inherit', stderr: 'inherit' })
 }
 gaze(glob, (err, watcher) => {
   if (err) quit(err)
   var proc = spawnCommand()
-  proc.stdout.pipe(process.stdout)
-  proc.stderr.pipe(process.stderr)
   watcher.on('changed', () => {
     proc.kill()
     proc = spawnCommand()
-    proc.stdout.pipe(process.stdout)
-    proc.stderr.pipe(process.stderr)
   })
 })
