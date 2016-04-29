@@ -6,11 +6,11 @@ function quit (err) {
 function usage () {
   quit(`USAGE: 
 
-  watchrun [files] -r "[command-to-run]"
+  runwatch [files] -r "[command-to-run]"
 
   ex,
     
-    watchrun **/*.js -r "tape test/*.js"`)
+    runwatch **/*.js -r "tape test/*.js"`)
 }
 var argv = require('minimist')(process.argv.slice(2))
 var gaze = require('gaze')
