@@ -1,8 +1,6 @@
 # runwatch
 
-WIP testing module
-
-*watches* files, *runs* a command when those files change
+watch some files, run a command (when the files change)
 
 ## install
 
@@ -11,7 +9,6 @@ npm install -g runwatch
 ```
 
 ## use
-
 ```
 runwatch [files to watch] -r "[command to run]"
 ```

@@ -3,7 +3,15 @@ function quit (err) {
   console.log(err)
   process.exit(1)
 }
-var usage = () => quit(`USAGE: runwatch [glob] -r "[command-to-run]"`)
+function usage () {
+  quit(`USAGE: 
+
+  watchrun [files] -r "[command-to-run]"
+
+  ex,
+    
+    watchrun **/*.js -r "tape test/*.js"`)
+}
 var argv = require('minimist')(process.argv.slice(2))
 var gaze = require('gaze')
 var spawn = require('child_process').spawn

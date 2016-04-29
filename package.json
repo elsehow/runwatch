@@ -14,8 +14,8 @@
     "minimist": "^1.2.0"
   },
   "name": "runwatch",
-  "description": "WIP testing module",
-  "version": "0.0.5",
+  "description": "watch some files, run a command (when the files change)",
+  "version": "0.1.0",
   "directories": {
     "test": "test"
   },
