@@ -3,15 +3,11 @@ function quit (err) {
   console.log(err)
   process.exit(1)
 }
-//function usage () {
-//  quit(`USAGE:
-//
-//  runwatch [files] -r "[command-to-run]"
-//
-//  ex,
-//
-//    runwatch **/*.js -r "tape test/*.js"`)
-//}
+function usage () {
+  var usageFile = require('path').join(__dirname, 'USAGE.txt')
+  var readSync = require('fs').readFileSync
+  quit(readSync(usageFile).toString())
+}
 var argv = require('minimist')(process.argv.slice(2))
 var gaze = require('gaze')
 var spawn = require('child_process').spawn
