@@ -17,8 +17,11 @@ if (!files) usage()
 if (!cmd) usage()
 function spawnCommand () {
   var cmds = cmd.split(' ')
-  var proc = spawn(cmds[0], cmds.slice(1), {stdio: 'inherit', stdout: 'inherit'})
-  proc.on('error', err => console.log(err))
+  var process = spawn(cmds[0], cmds.slice(1), {
+    stdio: 'inherit', stdout: 'inherit'
+  })
+  process.on('error', err => console.log(err))
+  return process
 }
 var proc = spawnCommand()
 files.forEach(f => {
@@ -27,6 +30,6 @@ files.forEach(f => {
     watcher.on('changed', () => {
       proc.kill()
       proc = spawnCommand()
-    })  
-  })  
+    })
+  })
 })
