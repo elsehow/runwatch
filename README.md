@@ -27,10 +27,9 @@ now modify test.sh, and watch the script re-run!
 heavily inspired by [npm-watch](https://www.npmjs.com/package/npm-watch), but with a few differences:
 
 - runs from the command line, no npm dependencies
-- uses standard [file globs](https://github.com/isaacs/node-glob)
+- uses [file globs](https://github.com/isaacs/node-glob) for advanaced filename matching
 - when the watched script errors, it prints *only* the error, with no npm erroring boilerplate (!)
 - no nodemon dependencies - just `child_process.spawn()`
-
 
 ## license
 
