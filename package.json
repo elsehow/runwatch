@@ -16,7 +16,7 @@
   },
   "name": "runwatch",
   "description": "watch some files, run a command (when the files change)",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "directories": {
     "test": "test"
   },

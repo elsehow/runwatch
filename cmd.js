@@ -1,20 +1,13 @@
 #! /usr/bin/env node
-function quit (err) {
-  console.log(err)
-  process.exit(1)
-}
-function usage () {
-  var usageFile = require('path').join(__dirname, 'USAGE.txt')
-  var readSync = require('fs').readFileSync
-  quit(readSync(usageFile).toString())
-}
+var usage = require('usage-and-quit')
+var usageFile = require('path').join(__dirname, 'USAGE.txt')
 var argv = require('minimist')(process.argv.slice(2))
 var gaze = require('gaze')
 var spawn = require('child_process').spawn
 var files = argv._
 var cmd = argv.r
-if (!files) usage()
-if (!cmd) usage()
+if (!files) usage(usageFile)
+if (!cmd) usage(usageFile)
 function spawnCommand () {
   var cmds = cmd.split(' ')
   var process = spawn(cmds[0], cmds.slice(1), {
