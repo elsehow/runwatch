@@ -1,18 +1,20 @@
 # runwatch
 
-watch some files, run a command (when the files change)
+watches some files, runs a thing
+
+## example
+```
+runwatch *.js -r "npm start" 
+```
+
+runs `npm start` and watches everything that matches `*.js*`.
+when any `.js` file changes, it will SIGINT the old process (as if you pressed C-c), and re-runs `npm start`
 
 ## install
 
 ```
 npm install -g runwatch
 ```
-
-## use
-```
-runwatch [files to watch] -r "[command to run]"
-```
-
 ## example
 
 ```

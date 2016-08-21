@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+ /usr/bin/env node
 var usage = require('usage-and-quit')
 var usageFile = require('path').join(__dirname, 'USAGE.txt')
 var argv = require('minimist')(process.argv.slice(2))
@@ -11,18 +11,28 @@ if (!cmd) usage(usageFile)
 function spawnCommand () {
   var cmds = cmd.split(' ')
   var process = spawn(cmds[0], cmds.slice(1), {
-    stdio: 'inherit', stdout: 'inherit'
+    stdio: 'inherit', stdout: 'inherit',
+    detached: true,
   })
   process.on('error', err => console.log(err))
   return process
 }
 var proc = spawnCommand()
+function killCommand () {
+  process.kill(-proc.pid, 'SIGKILL')
+}
+console.log(proc.tpgid)
 files.forEach(f => {
   gaze(f, (err, watcher) => {
     if (err) quit(err)
     watcher.on('changed', () => {
-      proc.kill()
+// TODO find pgpid
+// TODO and document that kills process
+      killCommand()
       proc = spawnCommand()
     })
   })
 })
+process.on('SIGTERM', killCommand) 
+process.on('SIGINT', killCommand) 
+process.on('uncaughtException', killCommand) 
