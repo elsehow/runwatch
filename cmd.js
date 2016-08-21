@@ -21,13 +21,10 @@ var proc = spawnCommand()
 function killCommand () {
   process.kill(-proc.pid, 'SIGKILL')
 }
-console.log(proc.tpgid)
 files.forEach(f => {
   gaze(f, (err, watcher) => {
     if (err) quit(err)
     watcher.on('changed', () => {
-// TODO find pgpid
-// TODO and document that kills process
       killCommand()
       proc = spawnCommand()
     })
