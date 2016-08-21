@@ -1,4 +1,4 @@
- /usr/bin/env node
+#!/usr/bin/env node
 var usage = require('usage-and-quit')
 var usageFile = require('path').join(__dirname, 'USAGE.txt')
 var argv = require('minimist')(process.argv.slice(2))
