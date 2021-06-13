@@ -10,16 +10,22 @@ if (!files) usage(usageFile)
 if (!cmd) usage(usageFile)
 function spawnCommand () {
   var cmds = cmd.split(' ')
-  var process = spawn(cmds[0], cmds.slice(1), {
+  var proc = spawn(cmds[0], cmds.slice(1), {
     stdio: 'inherit', stdout: 'inherit',
     detached: true,
   })
-  process.on('error', err => console.log(err))
-  return process
+  return proc.on('error', err => {
+    console.error(err)
+    proc.exited = true
+  }).on('exit', () => {
+    proc.exited = true
+  })
 }
 var proc = spawnCommand()
 function killCommand () {
-  process.kill(-proc.pid, 'SIGKILL')
+  if (!proc.exited) {
+    process.kill(-proc.pid, 'SIGKILL')
+  }
 }
 files.forEach(f => {
   gaze(f, (err, watcher) => {
