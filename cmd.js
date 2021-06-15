@@ -36,6 +36,10 @@ files.forEach(f => {
     })
   })
 })
-process.on('SIGTERM', killCommand) 
-process.on('SIGINT', killCommand) 
-process.on('uncaughtException', killCommand) 
+function die() {
+  killCommand()
+  process.exit()
+}
+process.on('SIGTERM', die)
+process.on('SIGINT', die)
+process.on('uncaughtException', die)
